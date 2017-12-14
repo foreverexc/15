@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>演示</title>
+</head>
+<body>
+<table id="list" border="1">
+
+</table>
+</body>
+<script type="text/javascript">
+    fetch("http://localhost:8080/news/test").then(function (response) {
+        return response.json();
+    }).then(function (json) {
+        console.log(json);
+        var list = document.getElementById("list");
+        var tmp = "<tr><td>nid</td><td>title</td><td>des</td></tr>";
+        for(var i = 0 ;i< json.length; i++){
+            tmp +="<tr><td>"+json[i].nid+"</td><td>"+json[i].title+"</td><td>"+json[i].des + "</td></tr>"
+        }
+        list.innerHTML = list.innerHTML+tmp;
+    })
+</script>
+</html>
